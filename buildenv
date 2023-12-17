@@ -1,0 +1,51 @@
+export ZOPEN_STABLE_URL="https://github.com/JetBrains/kotlin/releases/download/v1.9.21/kotlin-compiler-1.9.21.zip"
+export ZOPEN_STABLE_DEPS="bash java"
+export ZOPEN_BUILD_LINE="STABLE"
+export ZOPEN_RUNTIME_DEPS="bash java"
+export ZOPEN_CATEGORIES="language"
+
+zopen_check_results()
+{
+  dir="$1"
+  pfx="$2"
+  chk="$1/$2_check.log"
+
+  # Needs to be enhanced with tests
+  echo "actualFailures:0"
+  echo "totalTests:1"
+  echo "expectedFailures:0"
+  echo "expectedTotalTests:1"
+}
+
+export ZOPEN_CONFIGURE="skip"
+export ZOPEN_CONFIGURE_OPTS=""
+
+export ZOPEN_MAKE="skip"
+export ZOPEN_MAKE_OPTS=""
+
+export ZOPEN_CHECK="skip"
+export ZOPEN_CHECK_OPTS=""
+
+export ZOPEN_INSTALL="zopen_kotlin_install"
+
+zopen_kotlin_install()
+{
+  mkdir -p "$ZOPEN_INSTALL_DIR/bin" "$ZOPEN_INSTALL_DIR/lib" 
+  cp -r "$PWD/bin/" "$ZOPEN_INSTALL_DIR/bin/"
+  cp -r "$PWD/lib/" "$ZOPEN_INSTALL_DIR/lib/"
+  return 0
+}
+
+zopen_append_to_env()
+{
+cat <<ZZ
+KOTLIN_HOME="\$PWD"
+ZZ
+}
+
+zopen_get_version()
+{
+  KOTLIN_DIR=$PWD
+  export JAVA_HOME=$(dirname $(dirname $(/bin/type java | awk ' { print $3; }')))
+  bash "$KOTLIN_DIR/bin/kotlin" --version 2>&1 | head -1 | awk ' { print $3; } '
+}
