@@ -3,6 +3,10 @@ export ZOPEN_STABLE_DEPS="bash java"
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_RUNTIME_DEPS="bash java"
 export ZOPEN_CATEGORIES="language"
+export ZOPEN_NAME="kotlin"
+
+rm -f kotlin-compiler-1.9.21
+ln -s kotlinc kotlin-compiler-1.9.21
 
 zopen_check_results()
 {
@@ -47,5 +51,6 @@ zopen_get_version()
 {
   KOTLIN_DIR=$PWD
   export JAVA_HOME=$(dirname $(dirname $(/bin/type java | awk ' { print $3; }')))
-  bash "$KOTLIN_DIR/bin/kotlin" --version 2>&1 | head -1 | awk ' { print $3; } '
+  export JAVA_OPTS='-Dfile.encoding=ISO-8859-1'
+  bash "$KOTLIN_DIR/bin/kotlin" -version 2>&1 | head -1 | awk ' { print $3; } '
 }
