@@ -1,12 +1,15 @@
-export ZOPEN_STABLE_URL="https://github.com/JetBrains/kotlin/releases/download/v1.9.21/kotlin-compiler-1.9.21.zip"
-export ZOPEN_STABLE_DEPS="bash java"
+# bump: kotlin-version /KOTLIN_VERSION="(.*)"/ https://github.com/JetBrains/kotlin.git|semver:^1
+KOTLIN_VERSION="1.9.21"
+
 export ZOPEN_BUILD_LINE="STABLE"
+export ZOPEN_STABLE_URL="https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip"
+export ZOPEN_STABLE_DEPS="bash java"
 export ZOPEN_RUNTIME_DEPS="bash java"
 export ZOPEN_CATEGORIES="language"
 export ZOPEN_NAME="kotlin"
 
-rm -f kotlin-compiler-1.9.21
-ln -s kotlinc kotlin-compiler-1.9.21
+rm -f "kotlin-compiler-${KOTLIN_VERSION}"
+ln -s kotlinc "kotlin-compiler-${KOTLIN_VERSION}"
 
 zopen_check_results()
 {
