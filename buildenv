@@ -1,5 +1,5 @@
 # bump: kotlin-version /KOTLIN_VERSION="(.*)"/ https://github.com/JetBrains/kotlin.git|semver:^1
-KOTLIN_VERSION="1.9.22"
+KOTLIN_VERSION="1.9.25"
 
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_STABLE_URL="https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip"
