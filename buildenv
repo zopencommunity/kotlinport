@@ -3,8 +3,8 @@ KOTLIN_VERSION="1.9.22"
 
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_STABLE_URL="https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip"
-export ZOPEN_STABLE_DEPS="bash java"
-export ZOPEN_RUNTIME_DEPS="bash java"
+export ZOPEN_STABLE_DEPS="bash check_java"
+export ZOPEN_RUNTIME_DEPS="bash check_java"
 export ZOPEN_CATEGORIES="language"
 export ZOPEN_NAME="kotlin"
 
